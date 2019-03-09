@@ -1,0 +1,111 @@
+.Container {
+    display: flex;
+    flex:1;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.TopArea {
+    height: 60px;
+    background: linear-gradient(306deg,#43cccc,#08a);
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.BannerTitle {
+    color: #003648;
+    font-size: 48px;
+    line-height: 1.31;
+    font-family: 'Raleway',sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 32px;
+    margin-top: 20px;
+}
+
+.GetStarted {
+    display: flex;
+    justify-content: center;
+}
+
+.ImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.BgImage {
+    object-fit: contain;
+    height: 80%;
+    width: 80%;
+}
+
+.ImageBottom {
+    background: linear-gradient(306deg,#43cccc,#08a);
+    height: 300px;
+    padding-top: 100px;
+    padding-bottom: 10px;
+}
+
+.BottomHeadingStyle {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1.31;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.BottomTextStyle {
+    font-size: 20px;
+    line-height: 1.5;
+    -webkit-letter-spacing: 0.6px;
+    -moz-letter-spacing: 0.6px;
+    -ms-letter-spacing: 0.6px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    color: #fff;
+    max-width: 817px;
+    margin: 0 auto 80px;
+}
+
+.ButtonContainerTop {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.ButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+    margin-bottom: 10%;
+}
+
+.AssuranceContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.AssuranceCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.AssuranceImg {
+    margin-bottom: 10px;
+}
+
+.AssuranceTxt {
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    color: #666;
+
+}
