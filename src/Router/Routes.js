@@ -1,5 +1,6 @@
 import { Router } from '@reach/router';
 import React from 'react';
+import Dashboard from '../containers/Dashboard/Dashboard';
 
 // Importing Screens for Routes
 
@@ -8,12 +9,12 @@ import LandingPage from '../components/HireX/LandingPage/LandingPage';
 
 
 // Setting up Navigator
-
 const BaseNavigation = ()=> {
     return (
         <Router>
             <Auth path='/auth'/>
-            <LandingPage path="/"/>
+            <LandingPage path='/'/>
+            <Dashboard path='/dashboard'/>
         </Router>
     )
 }

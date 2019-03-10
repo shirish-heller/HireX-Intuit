@@ -94,13 +94,13 @@ class Auth extends Component {
     validateLoginForm() {
        let {isUserIdValid, isUserPasswordValid} = this.state;
        if(isUserIdValid && isUserPasswordValid) {
-           this.setState({isLoginFormValid: true});
+           this.setState({isLoginFormValid: true, loginErrorMesssage: 'Enter valid data'});
         }
     }
     validateSignupForm() {
-        let {isPasswordValid, isEmailValid, isConfPasswordValid} = this.state
-        if(isPasswordValid && isEmailValid && isConfPasswordValid) {
-            this.setState({isSignupFormValid: true})
+        let {isfNameValid, isPasswordValid, isEmailValid, isConfPasswordValid} = this.state
+        if(isPasswordValid && isEmailValid && isConfPasswordValid && isfNameValid) {
+            this.setState({isSignupFormValid: true, loginErrorMesssage: 'Enter all mandatory fields.'})
         }
      }
      signupHandler = ()=> {
@@ -111,7 +111,8 @@ class Auth extends Component {
 
         } else {
             this.setState({
-                isLoginSignupFailed: true
+                isLoginSignupFailed: true,
+                loginErrorMesssage: 'Enter valid data'
             })
         }
     }
@@ -123,7 +124,7 @@ class Auth extends Component {
         } else {
             this.setState({
                 isLoginSignupFailed: true,
-                loginErrorMesssage: 'Invalid/Incomplete form data entered'
+                loginErrorMesssage: 'Enter valid data'
             })
         }
     }
@@ -152,6 +153,8 @@ class Auth extends Component {
                     isLoginSignupFailed: false,
                     loginData: data
                 });
+                localStorage.setItem('userData', JSON.stringify(data));
+                window.location.href = '/dashboard'
             } else {
                 this.setState({
                     isLoginSignupFailed: true,
@@ -192,14 +195,15 @@ class Auth extends Component {
         .then(data=> {
             console.log('Signup Request succeeded with JSON response', data);
             this.setState({
-                isLoginSignupFailed: false
+                isLoginSignupFailed: false,
+                isLoginPage: true
             });
         })
         .catch(error=> {
             console.log('Login Request failed', error);
             this.setState({
                 isLoginSignupFailed: true,
-                loginErrorMesssage: 'Login request failed. Try after some time.'
+                loginErrorMesssage: 'Signup request failed. Try after some time.'
             });
         })
 
@@ -210,9 +214,11 @@ class Auth extends Component {
                 <div className={classes.AuthPopupContainer}>
                 {/* Header */}
                     <div className={classes.ModalHeader}>
-                        <div>
-                            <img className={classes.ModalImage} src={HireXLogo} alt="LOGO"/>
-                        </div>
+                        <a href='/'>
+                            <div>
+                                <img className={classes.ModalImage} src={HireXLogo} alt="LOGO"/>
+                            </div>
+                        </a>
                     </div>
                 <hr/>
 
@@ -245,7 +251,7 @@ class Auth extends Component {
                         margin="normal"
                         variant="outlined"
                     />
-                        <Button onClick={this.loginHandler} variant="text" style={{backgroundColor: "#137ded", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8}}> Login</Button>
+                        <Button onClick={this.loginHandler} variant="text" style={{width: '50%',backgroundColor: "#137ded", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8, marginTop: 15, marginBottom: 10}}> Login</Button>
                     <div>
                         Not a member? <span className={classes.SignupLink} onClick={(e) => this.navigateToSignup(e)}>Signup</span>
                     </div>
@@ -309,13 +315,13 @@ class Auth extends Component {
                         margin="normal"
                         variant="outlined"
                     />
-                        <Button onClick={this.signupHandler} variant="text" style={{backgroundColor: "#137ded", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8}}> Signup</Button>
+                        <Button onClick={this.signupHandler} variant="text" style={{width: '50%',backgroundColor: "#137ded", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8, marginTop: 15, marginBottom: 5}}> Signup</Button>
                 </form>)
                 }
                 {this.state.isLoginSignupFailed &&
                     <div className={classes.SignupFailed}>
                     {
-                        this.state.isLoginPage? 'Login Failed: Invalid credentials!':'Signup Failed!'
+                        this.state.loginErrorMesssage
                     } 
                     </div>
                 }

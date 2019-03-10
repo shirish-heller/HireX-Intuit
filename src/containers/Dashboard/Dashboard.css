@@ -1,0 +1,15 @@
+.Container {
+    display: flex;
+    flex:1;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F0F0F0;
+}
+
+.Loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+}

@@ -1,0 +1,71 @@
+.Card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.08), 0 4px 4px 0 rgba(0,0,0,.12);
+}
+
+.CardTop {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.CardContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    /* align-items: center; */
+    /* margin: 0 auto; */
+    padding-left: 20%;
+}
+
+.CardContent div {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.CardBottom {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 5px;
+    border-top: 1px solid #E0E0E0;
+}
+
+.JobId {
+    display: flex;
+    align-items: center;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    font-size: 14px; 
+}
+
+.JobIdLabel {
+    color: rgba(0, 0, 0, 0.54);
+    /* color: #666; */
+    font-size: 14px;
+    padding-right: 5px;
+}
+
+.Label {
+    color: rgba(0, 0, 0, 0.54);
+    /* color: #666; */
+    font-size: 16px;
+    padding-right: 5px;
+    padding-top: 1px;
+}
+
+.Data {
+    font-size: 16px;
+}
+

@@ -48,12 +48,14 @@ const LandingPage = ()=> {
             <div id="action" className={classes.ButtonContainerTop}>
                 <div className={classes.ButtonContainer}>
                     <div>
-                    <a style={{textDecoration: 'none'}} href="/auth">
-                        <Button variant="text" style={{backgroundColor: "#f77d0e", color: '#fff', fontFamily: 'Raleway', paddingRight: 30, paddingLeft: 30, paddingBottom: 13, paddingTop: 13}}> I want To Hire</Button>
-                    </a>
+                        <a style={{textDecoration: 'none'}} href="/auth">
+                            <Button variant="text" style={{backgroundColor: "#f77d0e", color: '#fff', fontFamily: 'Raleway', paddingRight: 30, paddingLeft: 30, paddingBottom: 13, paddingTop: 13}}> I want To Hire</Button>
+                        </a>
                     </div>
                     <div>
-                        <Button variant="text" style={{backgroundColor: "#fff", border: '3px solid #f77d0e', color: '#f77d0e', fontFamily: 'Raleway', paddingRight: 22, paddingLeft: 22, paddingBottom: 10, paddingTop: 10}}>I want to Work</Button>
+                        <a style={{textDecoration: 'none'}} href="/auth">
+                            <Button variant="text" style={{backgroundColor: "#fff", border: '3px solid #f77d0e', color: '#f77d0e', fontFamily: 'Raleway', paddingRight: 22, paddingLeft: 22, paddingBottom: 10, paddingTop: 10}}>I want to Work</Button>
+                        </a>
                     </div>
                 </div>
             </div>
