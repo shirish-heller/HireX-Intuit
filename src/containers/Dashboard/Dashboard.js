@@ -5,6 +5,7 @@ import classes from './Dashboard.css';
 import PostsContainer from '../../components/HireX/PostsContainer/PostsContainer';
 import CreateJobModal from '../../components/HireX/CreateJobModal/CreateJobModal';
 import Pagination from "material-ui-flat-pagination";
+import PostBidModal from '../../components/HireX/PosBidModal/PostBidModal';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -12,9 +13,10 @@ class Dashboard extends Component {
         this.state = {
             posts: [],
             showCreateJobModal: false,
+            showPostBidModal: false,
             numberOfPages: 0,
-            offset: 0
-      
+            offset: 0,
+            currentPostId: null      
         }
     }
     componentDidMount() {
@@ -49,15 +51,56 @@ class Dashboard extends Component {
         .catch(error=> console.log('Call Get All Jobs Failed!!', error))
     }
 
-    openPostProjectForm = ()=> {
-        this.setState({showCreateJobModal: true})
-
+    openPostProjectForm = ()=> this.setState({showCreateJobModal: true});
+    
+    openBidModal = (currentPostId)=> {
+        this.setState({showPostBidModal: true, currentPostId: currentPostId})
     }
-
-    dismissModal = ()=> {
+ 
+    dismissJobModal = ()=> {
         this.setState({showCreateJobModal: !this.state.showCreateJobModal})
     }
+    dismissBidModal = ()=> {
+        this.setState({showPostBidModal: !this.state.showPostBidModal})
+    }
 
+    postBid = (data)=> {
+        const {bid} = data;
+        const authData = JSON.parse(localStorage.getItem('userData'));
+        let userId;
+        if(authData && authData.userData && authData.userData.userId) {
+            userId = authData.userData.userId;
+        }
+        const body= {
+            postId: this.state.currentPostId,
+            amount: bid,
+            userId: userId
+        }
+        console.log('bidData', body);
+        const createBidUrl = 'http://localhost:5000/bid/createBid'
+        fetch(createBidUrl, {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(body)
+        })
+        .then(res=> res.json())
+        .then(data=> {
+            if(data.success) {
+                console.log(`Bid on Job Id ${this.currentPostId} succesfull` , data);
+            } else {
+                console.log(`Bid on Job Id ${this.currentPostId} Failed` , data);
+                alert('Job Bid failed. Please try again after some time');
+            }
+            this.setState({showPostBidModal: false});
+        })
+        .catch(error=> console.log('Bidding on Job call failed', error));
+
+    }
     createJobPost = (jobData)=> {
         console.log(jobData);
         let data = JSON.parse(localStorage.getItem('userData'));
@@ -99,9 +142,6 @@ class Dashboard extends Component {
         .catch(error=> console.log('Posting Job call failed', error));
     }
 
-    handleBidClick = (e)=> {
-        console.log(e.currentTarget);
-    }
     render() {
         return (
             <div className={classes.Container}>
@@ -120,11 +160,14 @@ class Dashboard extends Component {
 
             {/* Posts Container */}
                 {
-                    this.state.posts.length>0 ? <PostsContainer onBid={this.handleBidClick} posts={this.state.posts}/>: <div className={classes.Loading}>...Loading</div>
+                    this.state.posts.length>0 ? <PostsContainer onBid={this.openBidModal} posts={this.state.posts}/>: <div className={classes.Loading}>...Loading</div>
                 }
             
             {/* Create Job Modal Form */}
-                <CreateJobModal createPost={this.createJobPost} show={this.state.showCreateJobModal} dismissModal={this.dismissModal}/>
+                <CreateJobModal createPost={this.createJobPost} show={this.state.showCreateJobModal} dismissModal={this.dismissJobModal}/>
+            
+            {/* Post Bid Modal */}
+                <PostBidModal postBid={this.postBid} show={this.state.showPostBidModal} dismissModal={this.dismissBidModal}/>
             </div>
         )
     }

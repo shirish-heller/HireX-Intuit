@@ -44,7 +44,7 @@ const Post = (props)=> {
                     <Dollar style={{paddingTop: 1}}/>
                     {props.data.price}
                 </Button>
-                <Button onClick={props.onBid.bind(this)} variant="text" style={{backgroundColor: "#f77d0e", color: '#fff', fontFamily: 'Raleway', paddingRight: 10, paddingLeft: 10, paddingBottom: 4, paddingTop: 4}}>
+                <Button onClick={props.onBid.bind(this, props.data._id)} variant="text" style={{backgroundColor: "#f77d0e", color: '#fff', fontFamily: 'Raleway', paddingRight: 10, paddingLeft: 10, paddingBottom: 4, paddingTop: 4}}>
                     <Gavel style={{paddingRight: 5}}/>
                     BID
                 </Button>

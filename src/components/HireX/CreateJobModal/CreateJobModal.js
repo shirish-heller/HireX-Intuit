@@ -23,7 +23,7 @@ class CreateJobModal extends Component {
     render() {
         return (
             <Modal show={this.props.show} dismissModal={this.props.dismissModal}>
-                <div className={classes.Title}>POST A BID</div>
+                <div className={classes.Title}>CREATE A NEW JOB</div>
                 <form className={classes.Form}>
                         <TextField
                             required
@@ -77,7 +77,7 @@ class CreateJobModal extends Component {
                             margin="normal"
                             variant="outlined"
                         />
-                        <Button onClick={this.props.createPost.bind(this, this.state)} variant="text" style={{width: '50%',backgroundColor: "#137ded", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8, marginTop: 15, marginBottom: 5}}>
+                        <Button onClick={this.props.createPost.bind(this, this.state)} variant="text" style={{width: '50%',backgroundColor: "#f77d0e", color: '#fff', fontFamily: 'Raleway', paddingRight: 40, paddingLeft: 40, paddingBottom: 8, paddingTop: 8, marginTop: 15, marginBottom: 5}}>
                             <CheckIcon style={{paddingRight: 5}}/>
                             Create Job 
                         </Button>
